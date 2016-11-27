@@ -10,10 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.transition.Transition
 import android.view.MenuItem
 import android.view.View.GONE
-import android.view.View.INVISIBLE
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
