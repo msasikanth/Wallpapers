@@ -2,6 +2,9 @@
 
 This project is made by Sasikanth Miriyampalli
 
+![alt tag](https://raw.githubusercontent.com/sasikanth01/Wallpapers/master/preview.png)
+
+
 MIT License
 
 Copyright (c) [2016] [Sasikanth Miriyampalli]
