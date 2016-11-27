@@ -11,7 +11,9 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.transition.Transition
+import android.view.MenuItem
 import android.view.View.GONE
+import android.view.View.INVISIBLE
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
@@ -34,26 +36,6 @@ class DetailView : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         apply.hide()
 
-        val transition: Transition = window.sharedElementEnterTransition
-        transition.addListener(object : Transition.TransitionListener {
-            override fun onTransitionStart(p0: Transition?) {
-            }
-
-            override fun onTransitionEnd(p0: Transition?) {
-                apply.show()
-            }
-
-            override fun onTransitionCancel(p0: Transition?) {
-            }
-
-            override fun onTransitionPause(p0: Transition?) {
-            }
-
-            override fun onTransitionResume(p0: Transition?) {
-            }
-
-        })
-
         Glide.with(this).load(link).asBitmap().listener(object : RequestListener<String, Bitmap> {
             override fun onException(e: Exception, model: String, target: Target<Bitmap>, isFirstResource: Boolean): Boolean {
                 return false
@@ -61,6 +43,7 @@ class DetailView : AppCompatActivity() {
 
             override fun onResourceReady(resource: Bitmap, model: String, target: Target<Bitmap>, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean {
                 detailProgress.visibility = GONE
+                apply.show()
                 return false
             }
         }).into(bigWall)
@@ -97,7 +80,7 @@ class DetailView : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 wallpaperManage.setBitmap(bitmap, null, true, WallpaperManager.FLAG_SYSTEM)
                 wallpaperManage.setBitmap(bitmap, null, true, WallpaperManager.FLAG_LOCK)
-            } else{
+            } else {
                 wallpaperManage.setBitmap(bitmap)
             }
 
@@ -110,6 +93,17 @@ class DetailView : AppCompatActivity() {
             Snackbar.make(detailView, "Wallpaper Applied", Snackbar.LENGTH_LONG).show()
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
